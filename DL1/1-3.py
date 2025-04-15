@@ -23,9 +23,9 @@ def AND_gate(x1, x2):
     
     weight = np.array([0.5,0.5])
     
-    bias = None
+    bias = -0.7
     
-    y = None
+    y = np.sum(weight * x) + bias
     
     return Step_Function(y)
     
@@ -52,9 +52,9 @@ def OR_gate(x1, x2):
     
     weight = np.array([0.5,0.5])
     
-    bias = None
+    bias = -0.2
     
-    y = None
+    y = np.sum(weight * x) + bias
     
     return Step_Function(y)
 

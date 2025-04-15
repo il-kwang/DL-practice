@@ -19,15 +19,10 @@ import numpy as np
 '''
 
 def NAND_gate(x1, x2):
-    
-    x = None
-    
-    weight = None
-    
-    bias = None
-    
-    y = None
-    
+    x = np.array([x1, x2])
+    weight = np.array([-0.5, -0.5])  # NAND 게이트를 만족하는 가중치
+    bias = 0.7  # NAND 게이트를 만족하는 Bias
+    y = np.sum(weight * x) + bias
     return Step_Function(y)
 
 '''
@@ -48,16 +43,11 @@ def NAND_gate(x1, x2):
 '''
 
 def NOR_gate(x1, x2):
-    
-    x = None
-    
-    weight = None
-    
-    bias = None
-    
-    y = None
-    
-    return Step_Function(y) 
+    x = np.array([x1, x2])
+    weight = np.array([-0.5, -0.5])  # NOR 게이트를 만족하는 가중치
+    bias = 0.2  # NOR 게이트를 만족하는 Bias
+    y = np.sum(weight * x) + bias
+    return Step_Function(y)
 
 '''
 3. 설명을 보고 Step Function을 완성합니다.
@@ -70,25 +60,21 @@ def NOR_gate(x1, x2):
 '''
 
 def Step_Function(y):
-    
-    None  
+    return 1 if y >= 0 else 0
 
 def main():
-    
     # NAND와 NOR Gate에 넣어줄 Input
-    array = np.array([[0,0], [0,1], [1,0], [1,1]])
+    array = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
     
     # NAND Gate를 만족하는지 출력하여 확인
     print('NAND Gate 출력')
-    
     for x1, x2 in array:
-        print('Input: ',x1, x2, ' Output: ',NAND_gate(x1, x2))
+        print('Input: ', x1, x2, ' Output: ', NAND_gate(x1, x2))
     
     # NOR Gate를 만족하는지 출력하여 확인
     print('\nNOR Gate 출력')
-    
     for x1, x2 in array:
-        print('Input: ',x1, x2, ' Output: ',NOR_gate(x1, x2))
+        print('Input: ', x1, x2, ' Output: ', NOR_gate(x1, x2))
 
 if __name__ == "__main__":
     main()

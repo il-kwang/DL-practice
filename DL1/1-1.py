@@ -16,9 +16,9 @@ def Perceptron(x_1,x_2,w_1,w_2):
     
     bias = -1
     
-    output = None
+    output = (x_1 * w_1) + (x_2 * w_2) + bias
     
-    y = None
+    y = 1 if output > 0 else 0
     
     return output, y
 

@@ -4,36 +4,33 @@ import numpy as np
 1. AND_gate 함수
 '''
 
-def AND_gate(x1,x2):
+def AND_gate(x1, x2):
     x = np.array([x1, x2])
     weight = np.array([0.5, 0.5])
     bias = -0.7
-    y = np.sum(weight*x) + bias
-    
+    y = np.sum(weight * x) + bias
     return Step_Function(y)
 
 '''
 2. OR_gate 함수
 '''
 
-def OR_gate(x1,x2):
+def OR_gate(x1, x2):
     x = np.array([x1, x2])
     weight = np.array([0.5, 0.5])
     bias = -0.2
-    y = np.sum(weight*x) + bias
-    
+    y = np.sum(weight * x) + bias
     return Step_Function(y)
 
 '''
 3. NAND_gate 함수
 '''
 
-def NAND_gate(x1,x2):
+def NAND_gate(x1, x2):
     x = np.array([x1, x2])
     weight = np.array([-0.5, -0.5])
     bias = 0.7
-    y = np.sum(weight*x) + bias
-    
+    y = np.sum(weight * x) + bias
     return Step_Function(y)
 
 '''
@@ -41,7 +38,7 @@ def NAND_gate(x1,x2):
 '''
 
 def Step_Function(y):
-    if y<=0:
+    if y <= 0:
         return 0
     else:
         return 1
@@ -52,22 +49,21 @@ def Step_Function(y):
 '''
 
 def XOR_gate(x1, x2):
-    
-    None
-    None
-    
-    return None
+    # XOR 게이트는 NAND, OR, AND 게이트를 조합하여 구현
+    s1 = NAND_gate(x1, x2)
+    s2 = OR_gate(x1, x2)
+    y = AND_gate(s1, s2)
+    return y
 
 def main():
-    
     # XOR gate에 넣어줄 Input
-    array = np.array([[0,0], [0,1], [1,0], [1,1]])
+    array = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
     
     # XOR gate를 만족하는지 출력하여 확인
     print('XOR Gate 출력')
     
     for x1, x2 in array:
-        print('Input: ',x1, x2, ', Output: ', XOR_gate(x1, x2))
+        print('Input: ', x1, x2, ', Output: ', XOR_gate(x1, x2))
 
 if __name__ == "__main__":
     main()

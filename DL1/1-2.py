@@ -1,3 +1,4 @@
+import random
 '''
 1. 가중치와 Bias 값을 
    임의로 설정해줍니다.
@@ -13,8 +14,8 @@ def main():
     
     x = [1,2,3,4]
     
-    w = None
-    b = None
+    w = [random.random() for _ in range(4)]
+    b = random.uniform(-1, 1)
     
     output, y = perceptron(w,x,b)
     
@@ -35,9 +36,10 @@ def main():
 
 def perceptron(w, x, b):
     
-    output = None
+    output = sum([w[i] * x[i] for i in range(len(w))]) + b
     
-    y = None
+    y = 1 if  output > 0 else 0
+    
     
     return output, y
 

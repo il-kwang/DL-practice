@@ -18,17 +18,33 @@ import numpy as np
            XOR_gate 출력값을 반환합니다.
 '''
 
-def XOR_gate(x1, x2):
-    
-    x = None
-    
-    weight = None
-    
-    bias = None
-    
-    y = None
-    
+def NAND_gate(x1, x2):
+    x = np.array([x1, x2])
+    weight = np.array([-0.5, -0.5])
+    bias = 0.7
+    y = np.sum(weight * x) + bias
     return Step_Function(y)
+
+def OR_gate(x1, x2):
+    x = np.array([x1, x2])
+    weight = np.array([0.5, 0.5])
+    bias = -0.2
+    y = np.sum(weight * x) + bias
+    return Step_Function(y)
+
+def AND_gate(x1, x2):
+    x = np.array([x1, x2])
+    weight = np.array([0.5, 0.5])
+    bias = -0.7
+    y = np.sum(weight * x) + bias
+    return Step_Function(y)
+
+def XOR_gate(x1, x2):
+    # XOR 게이트는 NAND, OR, AND 게이트를 조합하여 구현
+    s1 = NAND_gate(x1, x2)
+    s2 = OR_gate(x1, x2)
+    y = AND_gate(s1, s2)
+    return y
 
 '''
 2. 설명을 보고 Step Function을 완성합니다.
@@ -41,11 +57,9 @@ def XOR_gate(x1, x2):
 '''
 
 def Step_Function(y):
-    
-    None
+    return 1 if y >= 0 else 0
 
 def main():
-    
     # XOR Gate에 넣어줄 Input과 그에 따른 Output
     Input = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])        
     Output = np.array([[0], [1], [1], [0]])
@@ -56,7 +70,7 @@ def main():
     XOR_list = []
     
     for x1, x2 in Input:
-        print('Input: ',x1, x2, ' Output: ', XOR_gate(x1, x2))
+        print('Input: ', x1, x2, ' Output: ', XOR_gate(x1, x2))
         XOR_list.append(XOR_gate(x1, x2))
     
     hit = 0
@@ -64,7 +78,7 @@ def main():
         if XOR_list[i] == Output[i]:
             hit += 1
     
-    acc = float(hit/4)*100
+    acc = float(hit / 4) * 100
     
     print('Accuracy: %.1lf%%' % (acc))
 

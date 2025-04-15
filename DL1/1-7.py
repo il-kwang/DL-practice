@@ -6,11 +6,9 @@ import warnings
 warnings.filterwarnings(action='ignore')
 
 np.random.seed(100)
-    
+
 # 데이터를 읽어오는 함수입니다.
-    
 def read_data(filename):
-    
     X = []
     Y = []
     
@@ -37,11 +35,9 @@ def read_data(filename):
 '''
 
 def train_MLP_classifier(X, Y):
-    
-    clf = None
-    
-    None
-    
+    # MLPClassifier 정의 및 학습
+    clf = MLPClassifier(hidden_layer_sizes=(10, 10), max_iter=1000, random_state=100)
+    clf.fit(X, Y)
     return clf
 
 '''
@@ -51,7 +47,6 @@ def train_MLP_classifier(X, Y):
 '''
 
 def report_clf_stats(clf, X, Y):
-    
     hit = 0
     miss = 0
     
@@ -61,8 +56,8 @@ def report_clf_stats(clf, X, Y):
         else:
             miss += 1
     
-    score = None
-    
+    # 정확도 계산
+    score = (hit / len(Y)) * 100
     print("Accuracy: %.1lf%% (%d hit / %d miss)" % (score, hit, miss))
 
 '''
@@ -85,15 +80,17 @@ def report_clf_stats(clf, X, Y):
 '''
 
 def main():
+    # 학습용 데이터와 테스트 데이터 로드
+    X_train, Y_train = read_data('data/train.txt')
+    X_test, Y_test = read_data('data/test.txt')
     
-    X_train, Y_train = None
+    # MLPClassifier 학습
+    clf = train_MLP_classifier(X_train, Y_train)
     
-    X_test, Y_test = None
+    # 테스트 데이터에 대한 정확도 출력
+    report_clf_stats(clf, X_test, Y_test)
     
-    clf = None
-    
-    score = None
-    
+    # 시각화
     visualize(clf, X_test, Y_test)
 
 if __name__ == "__main__":

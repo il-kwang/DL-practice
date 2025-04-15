@@ -20,16 +20,17 @@ np.random.seed(100)
 '''
 
 def load_data():
-    
     iris = load_iris()
     
-    X = iris.data[:,2:4]
+    # 꽃잎의 길이와 너비만 사용
+    X = iris.data[:, 2:4]
     Y = iris.target
     
-    X_train, X_test, Y_train, Y_test = None
+    # 데이터를 학습용 80%, 테스트용 20%로 분리
+    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
     
     return X_train, X_test, Y_train, Y_test
-    
+
 '''
 2. 사이킷런의 Perceptron 클래스를 사용하여 
    Perceptron 모델을 정의하고,
@@ -46,15 +47,19 @@ def load_data():
 '''
 
 def main():   
+    # 데이터 로드
+    X_train, X_test, Y_train, Y_test = load_data()
     
-    X_train, X_test, Y_train, Y_test = None
+    # Perceptron 모델 정의
+    perceptron = Perceptron(max_iter=1000, eta0=0.1, random_state=0)
     
-    perceptron = None
+    # 모델 학습
+    perceptron.fit(X_train, Y_train)
     
-    None
+    # 테스트 데이터에 대한 예측
+    pred = perceptron.predict(X_test)
     
-    pred = None
-    
+    # 정확도 계산
     accuracy = accuracy_score(pred, Y_test)
     
     print("Test 데이터에 대한 정확도 : %0.5f" % accuracy)
