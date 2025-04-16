@@ -24,13 +24,21 @@ def calcul(x,y,cal):
     result = 0
     
     # 더하기
-    
+    if cal == '+':
+        result = tf.add(x,y)
     # 빼기
+    elif cal == '-':
+        result = tf.subtract(x,y)
     
     # 곱하기
+    elif cal == '*':
+        result = tf.multiply(x,y)
     
     # 나누기
-    
+    elif cal == '/':
+        result = tf.divide(x,y)
+    else :
+        print('연산 종류를 잘못 입력했습니다.')
     return result.numpy()
 
 '''

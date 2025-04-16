@@ -10,12 +10,12 @@ def linear_model(w0, w1, X):
     
 '''
 1. 설명 중 '손실 함수' 파트의 수식을 참고해
-   MSE 손실 함수를 완성하세요. 
+   MSE 손실 함수를 완성하세요.  MSE = 평균 제곱 오차
 '''
 
 def Loss(f_x, y):
     
-    ls = None
+    ls = np.mean((y - f_x)**2) 
     
     return ls
 
@@ -31,8 +31,8 @@ def Loss(f_x, y):
 
 def gradient_descent(w0, w1, X, y):
     
-    gradient0 = None
-    gradient1 = None
+    gradient0 = (2/X.size) * np.sum((y - (w0 + w1*X) * -1)) 
+    gradient1 = (2/X.size) * np.sum((y - (w0 + w1*X)) * (-X))
     
     return np.array([gradient0, gradient1])
 
@@ -63,11 +63,11 @@ def main():
     # 반복 횟수 1000으로 설정
     for i in range(1000):
     
-        gd = None
+        gd = gradient_descent(w0, w1, X, y) 
         
-        w0 = None
-        w1 = None
-        
+        w0 = w0 - (lr * gd[0]) # w0 업데이트
+        w1 = w1 - (lr * gd[1]) # w1 업데이트
+                
         # 100회마다의 해당 loss와 w0, w1 출력
         if (i % 100 == 0):
         

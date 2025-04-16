@@ -1,11 +1,12 @@
 import tensorflow as tf
+import matplotlib.pyplot as plt
+import matplotlib as mpl
 import numpy as np
-
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 np.random.seed(100)
-tf.random.set_seed(100)
+
 
 import matplotlib.pyplot as plt
 import matplotlib as mpl

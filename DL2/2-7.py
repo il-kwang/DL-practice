@@ -24,9 +24,9 @@ class LinearModel:
     
     def __init__(self):
         
-        self.W = None
+        self.W = tf.Variable(1.5, dtype=tf.float32)
         
-        self.b = None
+        self.b = tf.Variable(1.5, dtype=tf.float32)
         
     def __call__(self, X, Y):
         
@@ -37,8 +37,8 @@ class LinearModel:
 '''
 
 def loss(y, pred):
-    
-    return None
+    LinearModel.compile(loss='mean_squared_error', optimizer='adam')
+    return loss(y, pred)
 
 '''
 3. gradient descent 방식으로 학습하는 train 함수입니다.

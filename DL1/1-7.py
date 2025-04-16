@@ -36,7 +36,7 @@ def read_data(filename):
 
 def train_MLP_classifier(X, Y):
     # MLPClassifier 정의 및 학습
-    clf = MLPClassifier(hidden_layer_sizes=(10, 10), max_iter=1000, random_state=100)
+    clf = MLPClassifier(hidden_layer_sizes=(10, 10   ), max_iter=1000, random_state=100)
     clf.fit(X, Y)
     return clf
 
@@ -91,7 +91,7 @@ def main():
     report_clf_stats(clf, X_test, Y_test)
     
     # 시각화
-    visualize(clf, X_test, Y_test)
+    save_visualization(clf, X_test, Y_test, filename="classification_result.png")
 
 if __name__ == "__main__":
     main()

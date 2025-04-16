@@ -5,7 +5,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import Perceptron
 
-np.random.seed(100)
+np.random.seed(64)
 
 '''
 1. iris 데이터를 불러오고, 
@@ -27,7 +27,7 @@ def load_data():
     Y = iris.target
     
     # 데이터를 학습용 80%, 테스트용 20%로 분리
-    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
+    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=0)
     
     return X_train, X_test, Y_train, Y_test
 
@@ -51,7 +51,7 @@ def main():
     X_train, X_test, Y_train, Y_test = load_data()
     
     # Perceptron 모델 정의
-    perceptron = Perceptron(max_iter=1000, eta0=0.1, random_state=0)
+    perceptron = Perceptron(max_iter=2000, eta0=0.1, random_state=64)
     
     # 모델 학습
     perceptron.fit(X_train, Y_train)

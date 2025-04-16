@@ -14,11 +14,11 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 def constant_tensors():
     
-    t1 = None
+    t1 = tf.constant(5,dtype=tf.int8, shape=(1,1))
     
-    t2 = None
+    t2 = tf.constant(0, dtype=tf.int16, shape=(3,5))
     
-    t3 = None
+    t3 = tf.constant(1, dtype=tf.int8, shape=(4,3))
     
     return t1, t2, t3
 
@@ -32,9 +32,9 @@ def constant_tensors():
 
 def sequence_tensors():
     
-    seq_t1 = None
+    seq_t1 = tf.range(1.5, 10.5,3)
     
-    seq_t2 = None
+    seq_t2 = tf.range(2.5, 20.5, 5)
     
     return seq_t1, seq_t2
 
@@ -52,11 +52,11 @@ def sequence_tensors():
 
 def variable_tensor():
     
-    var_tensor = None
+    var_tensor = tf.Variable(100, dtype=tf.float32)
     
-    W = None
+    W = tf.Variable(tf.ones((2,2), dtype=tf.float32), name='W')
     
-    b = None
+    b = tf.Variable(tf.zeros((2,), dtype=tf.float32), name='b')
     
     return var_tensor, W, b
 

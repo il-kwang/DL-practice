@@ -30,7 +30,7 @@ def train_MLP_classifier(X, y):
     바꿔본 후, 학습을 시킵니다.
     """
     # MLPClassifier 정의 및 학습
-    clf = MLPClassifier(hidden_layer_sizes=(64, 32), max_iter=1000, random_state=100)
+    clf = MLPClassifier(hidden_layer_sizes=(70, 50),solver='adam', max_iter=1000, random_state=100)
     clf.fit(X, y)
     return clf
 

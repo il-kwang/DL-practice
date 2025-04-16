@@ -56,9 +56,9 @@ def getParameters(X, y) :
     
     # Step01.
     
-    f = None
+    f = len(X[0]) #3
     
-    w = None
+    w = [1] * f # [1, 1, 1]
     
     values = []
     
@@ -66,16 +66,16 @@ def getParameters(X, y) :
         
         # Step02.
         
-        wPrime = None    
+        wPrime = [0] * f # [0, 0, 0]    
         
         # Step03.
         
         for i in range(len(y)) :
             r = 0
             for j in range(f) :
-                r = None
+                r = r + (X[i][j] * w[j])
             
-            v = None
+            v = sigmoid(r)
             
             # w를 업데이트하기 위한 wPrime을 역전파를 이용해 구하는 식
             for j in range(f) :
@@ -86,11 +86,11 @@ def getParameters(X, y) :
         flag = False
         
         for i in range(f) :
-            if None :
-                flag = None
+            if abs(wPrime[i]) > 0.001 :
+                flag = True
                 break
         
-        if flag == None :
+        if flag == False : # None
             break
         
         for j in range(f) :

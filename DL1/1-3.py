@@ -25,7 +25,7 @@ def AND_gate(x1, x2):
     
     bias = -0.7
     
-    y = np.sum(weight * x) + bias
+    y = x[0] * weight[0] + x[1] * weight[1] + bias
     
     return Step_Function(y)
     
@@ -54,7 +54,7 @@ def OR_gate(x1, x2):
     
     bias = -0.2
     
-    y = np.sum(weight * x) + bias
+    y = x[0] * weight[0] + x[1] * weight[1] + bias
     
     return Step_Function(y)
 
@@ -66,8 +66,7 @@ def OR_gate(x1, x2):
            출력하는 함수를 구현하면 됩니다.
 '''
 def Step_Function(y):
-    
-    None
+    return 1 if y >= 0 else 0
     
 def main():
     
